@@ -5,7 +5,7 @@ const pool = new Pool({
   host: "localhost",
   database: "megasena",
   password: "postgres",
-  port: 5433,
+  port: 5432
 });
 
 pool.on('error', (err) => {

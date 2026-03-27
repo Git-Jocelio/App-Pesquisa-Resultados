@@ -41,15 +41,23 @@ export const ConcursoProvider = ({ children }: Props) => {
   };
 
   const buscarPorNumero = async (numero: number) => {
-    try {
-      const response = await api.get(`/concurso/${numero}`);
-      setConcurso(response.data);
-      setErro("");
-    } catch {
-      setErro("Concurso não encontrado");
-      setConcurso(null);
-    }
-  };
+  try {
+    console.log(numero);
+    
+    const response = await api.get(`/${numero}`);
+    setConcurso(response.data);
+
+//console.log("Axios:", concurso);
+//console.log("pesq num:", numero);
+
+  } catch (err) {
+    console.error(err);
+    setErro("Erro ao buscar concurso");
+  }
+  console.log("Axios:", concurso);
+// console.log("pesq num:", numero);
+
+};
 
   return (
     <ConcursoContext.Provider
