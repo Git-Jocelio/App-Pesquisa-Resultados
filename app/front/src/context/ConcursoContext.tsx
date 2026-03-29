@@ -54,9 +54,17 @@ export const ConcursoProvider = ({ children }: Props) => {
 
       setConcurso(response.data);
       setErro("");
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       setErro("Erro ao buscar concurso");
+      if (err.response && err.response.status === 404) {
+        setErro("Concurso não encontrado");
+        setConcurso(null); // limpa resultado anterior
+      } else {
+        setErro("Erro ao buscar concurso");
+      }
+
+
     }
   };
 

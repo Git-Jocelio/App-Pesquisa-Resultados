@@ -38,9 +38,8 @@ function App() {
 
       <button onClick={handleBuscar}>Buscar</button>
      
-
-      {erro && <p>{erro}</p>}
-
+      {erro && <p style={{ color: "red" }}>{erro}</p>}
+      
       {concurso && (
         <div>
           <h2>Concurso {concurso.concurso}</h2>
