@@ -1,5 +1,4 @@
-import React, { createContext, useState } from "react";
-import { ReactNode } from "react";
+import React, { createContext, useState, ReactNode } from "react";
 import { api } from "../services/api";
 
 interface Concurso {
@@ -30,34 +29,36 @@ export const ConcursoProvider = ({ children }: Props) => {
   const [concurso, setConcurso] = useState<Concurso | null>(null);
   const [erro, setErro] = useState("");
 
+  // ✅ Busca concurso mais recente
   const buscarRecente = async () => {
     try {
       const response = await api.get("/recente");
+      console.log("Recente:", response.data);
+
       setConcurso(response.data);
       setErro("");
-    } catch {
+    } catch (err) {
+      console.error(err);
       setErro("Erro ao buscar concurso recente");
     }
   };
 
+  // ✅ Busca por número
   const buscarPorNumero = async (numero: number) => {
-  try {
-    console.log(numero);
-    
-    const response = await api.get(`/${numero}`);
-    setConcurso(response.data);
+    try {
+      console.log("Número enviado:", numero);
 
-//console.log("Axios:", concurso);
-//console.log("pesq num:", numero);
+      const response = await api.get(`/${numero}`);
 
-  } catch (err) {
-    console.error(err);
-    setErro("Erro ao buscar concurso");
-  }
-  console.log("Axios:", concurso);
-// console.log("pesq num:", numero);
+      console.log("Resposta API:", response.data);
 
-};
+      setConcurso(response.data);
+      setErro("");
+    } catch (err) {
+      console.error(err);
+      setErro("Erro ao buscar concurso");
+    }
+  };
 
   return (
     <ConcursoContext.Provider

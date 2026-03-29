@@ -8,7 +8,8 @@ function App() {
 
   useEffect(() => {
     buscarRecente();
-  }, [buscarRecente]);
+  }, []);
+
 
    const handleBuscar = async () => {
    
@@ -35,9 +36,8 @@ function App() {
 }}
       />
 
-      <button onClick={handleBuscar}>
-        Buscar
-      </button>
+      <button onClick={handleBuscar}>Buscar</button>
+     
 
       {erro && <p>{erro}</p>}
 
